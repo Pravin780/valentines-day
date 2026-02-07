@@ -4,7 +4,7 @@ function nextPage(page) {
 
 function checkAnswer() {
     let ans = document.getElementById("answer").value.toLowerCase();
-    if(ans === "college") {  // CHANGE THIS
+    if(ans === "bus stop") {  // CHANGE THIS
         window.location.href = "page3.html";
     } else {
         document.getElementById("result").innerText = "Nooo Babs 😜 Try Again ❤️";
