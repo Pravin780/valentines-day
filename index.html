@@ -1,1 +1,151 @@
-asdsdcae
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ff4e8b, #ff99cc);
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.container {
+    margin-top: 120px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+#message {
+    font-size: 22px;
+    margin-top: 20px;
+    min-height: 30px;
+}
+
+.buttons {
+    margin-top: 40px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+#yes {
+    background: white;
+    color: #ff4e8b;
+}
+
+#no {
+    background: black;
+    color: white;
+    position: absolute;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.heart {
+    position: absolute;
+    color: red;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: #ff4e8b;
+    padding: 30px;
+    border-radius: 20px;
+    font-size: 22px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Hey My Love ❤️</h1>
+    <div id="message"></div>
+
+    <div class="buttons">
+        <button id="yes">Yes 💖</button>
+        <button id="no">No 😜</button>
+    </div>
+</div>
+
+<div class="popup" id="popup">
+    She said YES! 💍💕 <br><br>
+    I Love You Forever ❤️
+</div>
+
+<audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Typing effect
+const text = "You are the most beautiful part of my life. Will you be my Valentine forever? 💕";
+let index = 0;
+
+function typeEffect() {
+    if (index < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 50);
+    }
+}
+typeEffect();
+
+// Yes button
+document.getElementById("yes").onclick = function() {
+    document.getElementById("popup").style.display = "block";
+}
+
+// Moving No button
+const noBtn = document.getElementById("no");
+noBtn.addEventListener("mouseover", function() {
+    noBtn.style.top = Math.random() * window.innerHeight + "px";
+    noBtn.style.left = Math.random() * window.innerWidth + "px";
+});
+
+// Floating hearts
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.innerHTML = "❤️";
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}, 500);
+</script>
+
+</body>
+</html>
