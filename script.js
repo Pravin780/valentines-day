@@ -68,3 +68,7 @@ if(noBtn){
         noBtn.style.left=Math.random()*window.innerWidth+"px";
     });
 }
+function playVideo(){
+    document.getElementById("proposalContent").style.display="none";
+    document.getElementById("videoContainer").style.display="flex";
+}
