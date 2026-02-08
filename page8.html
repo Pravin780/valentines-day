@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Surprise ❤️</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body {
+    background-image: url("gpt9.png"); /* same background */
+}
+
+#videoSection {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    justify-content: center;
+    align-items: center;
+}
+
+#videoSection video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+</style>
+</head>
+
+<body>
+
+<div class="center" id="textSection">
+    <h1>My Beautiful Babs ❤️</h1>
+    <p>
+        From the first day I saw you... <br>
+        My life became more colorful 🌈 <br><br>
+        Every smile of yours means the world to me 💕 <br><br>
+        I prepared something special for you...
+    </p>
+
+    <button onclick="openSurprise()">Open Your Surprise 🎁</button>
+</div>
+
+<div id="videoSection">
+    <video controls autoplay>
+        <source src="proposal.mp4" type="video/mp4">
+    </video>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

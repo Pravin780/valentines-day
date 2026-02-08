@@ -72,3 +72,11 @@ function playVideo(){
     document.getElementById("proposalContent").style.display="none";
     document.getElementById("videoContainer").style.display="flex";
 }
+function goToSurprise(){
+    window.location.href = "page8.html";
+}
+
+function openSurprise(){
+    document.getElementById("textSection").style.display = "none";
+    document.getElementById("videoSection").style.display = "flex";
+}
