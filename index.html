@@ -1,90 +1,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Welcome ❤️</title>
+<title>Praveen ❤️ Priyadharshini</title>
 
-<!-- Google Romantic Font -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 
-body {
-    margin: 0;
-    padding: 0;
-    background-image: url("bg1.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
+body{
+    margin:0;
+    padding:0;
+    background-image:url("bg1.jpg");
+    background-size:cover;
+    background-position:center;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-family:'Poppins',sans-serif;
+    overflow:hidden;
 }
 
-/* Dark soft overlay */
-body::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.45);
-    top: 0;
-    left: 0;
+/* Dark overlay */
+body::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    top:0;
+    left:0;
 }
 
-.container {
-    position: relative;
-    z-index: 2;
-    animation: fadeIn 2s ease-in-out;
+/* Container */
+.container{
+    position:relative;
+    z-index:2;
+    animation:fadeIn 2s ease;
 }
 
-/* Stylish romantic heading */
-h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 60px;
-    color: #fff;
-    text-shadow: 
-        0 0 10px rgba(255,255,255,0.8),
-        0 0 20px rgba(45, 93, 237, 0.6),
-        0 0 30px rgba(49, 77, 238, 0.5);
-    margin-bottom: 40px;
+/* Big Background Word (Like ENJOY JOURNEY style) */
+.big-text{
+    font-size:110px;
+    font-weight:900;
+    letter-spacing:5px;
+    color:rgba(255,255,255,0.08);
+    position:absolute;
+    top:40%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    white-space:nowrap;
 }
 
-/* 3D Romantic Button */
-button {
-    padding: 15px 40px;
-    font-size: 20px;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    background: linear-gradient(145deg, #4170ef, #4e7dea);
-    color: white;
-    box-shadow: 
-        0 8px 15px rgba(0,0,0,0.4),
-        inset 0 -3px 5px rgba(0,0,0,0.3),
-        inset 0 3px 5px rgba(255,255,255,0.3);
-    transition: all 0.3s ease;
+/* Valentines Day centered */
+.valentine{
+    font-size:70px;
+    font-weight:900;
+    color:white;
+    letter-spacing:3px;
+    margin-bottom:20px;
+    text-shadow:0 0 25px rgba(0,123,255,0.8);
 }
 
-/* Hover effect */
-button:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 
-        0 15px 25px rgba(42, 94, 215, 0.6),
-        inset 0 -3px 5px rgba(0,0,0,0.3),
-        inset 0 3px 5px rgba(255,255,255,0.4);
+/* Stylish Script Names */
+.names{
+    font-family:'Great Vibes',cursive;
+    font-size:65px;
+    color:#00aaff;
+    text-shadow:
+        0 0 10px #00aaff,
+        0 0 20px #007bff,
+        0 0 40px #005eff;
+    margin-bottom:40px;
 }
 
-/* Click effect */
-button:active {
-    transform: translateY(2px);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+/* Blue 3D Button */
+button{
+    padding:15px 45px;
+    font-size:20px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    background:linear-gradient(145deg,#1e90ff,#0066ff);
+    color:white;
+    font-weight:600;
+    box-shadow:
+        0 10px 20px rgba(0,0,0,0.5),
+        inset 0 -4px 8px rgba(0,0,0,0.3),
+        inset 0 4px 8px rgba(255,255,255,0.2);
+    transition:0.3s;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+button:hover{
+    transform:translateY(-6px) scale(1.05);
+    box-shadow:
+        0 20px 30px rgba(0,123,255,0.8);
+}
+
+button:active{
+    transform:translateY(2px);
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
 </style>
@@ -92,12 +112,22 @@ button:active {
 
 <body>
 
+<div class="big-text">VALENTINE'S DAY</div>
+
 <div class="container">
-    <h1>Welcome To Our 10th year Valentine's Day Babs 💙</h1>
+
+    <div class="valentine">VALENTINE'S DAY</div>
+
+    <div class="names">
+        Praveen ❤️ Priyadharshini
+    </div>
+
     <button onclick="window.location.href='page2.html'">
-        Start Journey 💕
+        Start Journey 💙
     </button>
+
 </div>
+
 <style>
     body {
         background-image: url("gpt1.png");
