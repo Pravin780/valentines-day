@@ -1,15 +1,167 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Mini Game</title>
-<link rel="stylesheet" href="style.css">
+    <title>Memory Puzzle 💙</title>
+
+    <!-- Retro Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+            background-image:url("2016.jpeg");
+            background-size:cover;
+            background-position:center;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            text-align:center;
+            font-family:'Cormorant Garamond', serif;
+            position:relative;
+        }
+
+        /* Blue retro overlay */
+        body::before{
+            content:"";
+            position:absolute;
+            width:100%;
+            height:100%;
+            background:rgba(0, 60, 120, 0.35);
+            top:0;
+            left:0;
+        }
+
+        h2{
+            position:relative;
+            z-index:2;
+            font-size:48px;
+            color:#7ecbff;
+            letter-spacing:2px;
+            text-shadow:
+                2px 2px 0 #003366,
+                4px 4px 15px rgba(0,0,0,0.6);
+            margin-bottom:20px;
+        }
+
+        .puzzle{
+            position:relative;
+            z-index:2;
+            width:300px;
+            height:300px;
+            display:grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap:2px;
+            border:4px solid #7ecbff;
+            box-shadow:0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .tile{
+            width:100px;
+            height:100px;
+            background-image:url("puzzle.jpg");
+            background-size:300px 300px;
+            cursor:pointer;
+            transition:0.2s;
+        }
+
+        .empty{
+            background:none;
+            cursor:default;
+        }
+
+        .message{
+            margin-top:20px;
+            font-size:22px;
+            color:#cde9ff;
+            z-index:2;
+        }
+
+    </style>
 </head>
+
 <body>
-<div class="center">
-    <h2>Catch 5 Hearts to Continue ❤️</h2>
-    <p>Score: <span id="score">0</span></p>
-</div>
-<script src="script.js"></script>
+
+<h2>Solve Our Memory 💙</h2>
+
+<div class="puzzle" id="puzzle"></div>
+
+<div class="message">Arrange the photo correctly to continue ✨</div>
+
+<script>
+
+const puzzle = document.getElementById("puzzle");
+let tiles = [];
+let emptyIndex = 8;
+
+function createPuzzle(){
+    puzzle.innerHTML = "";
+    tiles = [];
+
+    for(let i=0;i<9;i++){
+        let tile = document.createElement("div");
+        tile.classList.add("tile");
+
+        if(i === 8){
+            tile.classList.add("empty");
+        } else {
+            let row = Math.floor(i / 3);
+            let col = i % 3;
+            tile.style.backgroundPosition = `-${col*100}px -${row*100}px`;
+            tile.addEventListener("click", () => moveTile(i));
+        }
+
+        tiles.push(tile);
+        puzzle.appendChild(tile);
+    }
+}
+
+function moveTile(index){
+    const validMoves = [
+        emptyIndex - 1,
+        emptyIndex + 1,
+        emptyIndex - 3,
+        emptyIndex + 3
+    ];
+
+    if(validMoves.includes(index)){
+        puzzle.insertBefore(tiles[index], tiles[emptyIndex]);
+        [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
+        emptyIndex = index;
+
+        checkWin();
+    }
+}
+
+function shuffle(){
+    for(let i=0;i<100;i++){
+        let randomIndex = Math.floor(Math.random()*9);
+        moveTile(randomIndex);
+    }
+}
+
+function checkWin(){
+    for(let i=0;i<8;i++){
+        if(tiles[i].style.backgroundPosition !== 
+           `-${(i%3)*100}px -${Math.floor(i/3)*100}px`)
+           return;
+    }
+
+    setTimeout(()=>{
+        alert("You solved our memory 💙✨");
+        window.location.href = "page4.html";
+    },500);
+}
+
+createPuzzle();
+shuffle();
+
+</script>
+
 <style>
     body {
         background-image: url("gpt3.png");
