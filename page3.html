@@ -1,171 +1,273 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Memory Puzzle 💙</title>
+<title>Find Our Special Memory 💚</title>
 
-    <!-- Retro Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
 
-    <style>
+<style>
 
-        body{
-            margin:0;
-            padding:0;
-            background-image:url("2016.jpeg");
-            background-size:cover;
-            background-position:center;
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            flex-direction:column;
-            text-align:center;
-            font-family:'Cormorant Garamond', serif;
-            position:relative;
-        }
+body{
+    margin:0;
+    height:100vh;
+    background:url("gpt3.png") center/cover no-repeat;
+    font-family:'Cormorant Garamond', serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    overflow:hidden;
+}
 
-        /* Blue retro overlay */
-        body::before{
-            content:"";
-            position:absolute;
-            width:100%;
-            height:100%;
-            background:rgba(0, 60, 120, 0.35);
-            top:0;
-            left:0;
-        }
+/* Blur background only */
+.blur-bg .game-area{
+    filter:blur(8px);
+}
 
-        h2{
-            position:relative;
-            z-index:2;
-            font-size:48px;
-            color:#7ecbff;
-            letter-spacing:2px;
-            text-shadow:
-                2px 2px 0 #003366,
-                4px 4px 15px rgba(0,0,0,0.6);
-            margin-bottom:20px;
-        }
+.game-area{
+    text-align:center;
+    color:#b8f5d4;
+    z-index:1;
+}
 
-        .puzzle{
-            position:relative;
-            z-index:2;
-            width:300px;
-            height:300px;
-            display:grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(3, 1fr);
-            gap:2px;
-            border:4px solid #7ecbff;
-            box-shadow:0 10px 30px rgba(0,0,0,0.6);
-        }
+h1{
+    font-size:48px;
+    margin-bottom:10px;
+}
 
-        .tile{
-            width:100px;
-            height:100px;
-            background-image:url("puzzle.jpg");
-            background-size:300px 300px;
-            cursor:pointer;
-            transition:0.2s;
-        }
+.chances{
+    font-size:22px;
+    margin-bottom:30px;
+}
 
-        .empty{
-            background:none;
-            cursor:default;
-        }
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,120px);
+    gap:25px;
+    justify-content:center;
+}
 
-        .message{
-            margin-top:20px;
-            font-size:22px;
-            color:#cde9ff;
-            z-index:2;
-        }
+.card{
+    width:120px;
+    height:160px;
+    perspective:1000px;
+    cursor:pointer;
+}
 
-    </style>
+.inner{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform 0.6s;
+}
+
+.card.flip .inner{
+    transform:rotateY(180deg);
+}
+
+.front, .back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:15px;
+    backface-visibility:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:18px;
+    text-align:center;
+    padding:10px;
+    box-sizing:border-box;
+}
+
+.front{
+    background:#145c3a;
+    color:#7fffd4;
+    font-size:28px;
+}
+
+.back{
+    background:#0b3d2a;
+    color:#d4ffe9;
+    transform:rotateY(180deg);
+}
+
+/* POPUP */
+.popup{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    z-index:9999;
+}
+
+.popup-box{
+    background:#0f5132;
+    padding:40px;
+    border-radius:20px;
+    width:420px;
+    max-width:90%;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+    animation:pop 0.4s ease;
+}
+
+.popup-box img{
+    width:260px;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+.popup-text{
+    font-size:20px;
+    line-height:1.6;
+    color:#d2ffe7;
+    margin-bottom:25px;
+}
+
+.continue-btn{
+    padding:14px 40px;
+    background:#1abc9c;
+    border:none;
+    border-radius:12px;
+    font-size:18px;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.continue-btn:hover{
+    background:#16a085;
+    transform:scale(1.05);
+}
+
+@keyframes pop{
+    from{transform:scale(0.7);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+</style>
 </head>
 
 <body>
 
-<h2>Solve Our Memory 💙</h2>
+<div class="game-area">
 
-<div class="puzzle" id="puzzle"></div>
+    <h1>Find Our Special Memory 💚</h1>
+    <div class="chances">Chances Left: <span id="chanceCount">3</span></div>
 
-<div class="message">Arrange the photo correctly to continue ✨</div>
+    <div class="grid" id="grid"></div>
+
+</div>
+
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+
+    <div class="popup-box">
+
+        <img src="2016.jpeg">
+
+        <div class="popup-text">
+            💚 You know this is our 1st year photo<br><br>
+            That we took in my class<br><br>
+            And my most Favourite picture 💕
+        </div>
+
+        <button class="continue-btn" onclick="goNext()">
+            Continue 💚
+        </button>
+
+    </div>
+
+</div>
+
+
 
 <script>
 
-const puzzle = document.getElementById("puzzle");
-let tiles = [];
-let emptyIndex = 8;
+const grid = document.getElementById("grid");
+const chanceText = document.getElementById("chanceCount");
+let chances = 3;
+let correctIndex = Math.floor(Math.random()*6);
 
-function createPuzzle(){
-    puzzle.innerHTML = "";
-    tiles = [];
+const wrongMessages = [
+    "Babs try one more 💚",
+    "Babieeee try again 💕",
+    "Babs po now it will reshuffle 💔"
+];
 
-    for(let i=0;i<9;i++){
-        let tile = document.createElement("div");
-        tile.classList.add("tile");
+function createCards(){
+    grid.innerHTML="";
+    correctIndex = Math.floor(Math.random()*6);
 
-        if(i === 8){
-            tile.classList.add("empty");
-        } else {
-            let row = Math.floor(i / 3);
-            let col = i % 3;
-            tile.style.backgroundPosition = `-${col*100}px -${row*100}px`;
-            tile.addEventListener("click", () => moveTile(i));
-        }
+    for(let i=0;i<6;i++){
 
-        tiles.push(tile);
-        puzzle.appendChild(tile);
+        const card = document.createElement("div");
+        card.className="card";
+
+        const inner = document.createElement("div");
+        inner.className="inner";
+
+        const front = document.createElement("div");
+        front.className="front";
+        front.innerHTML="💚";
+
+        const back = document.createElement("div");
+        back.className="back";
+
+        inner.appendChild(front);
+        inner.appendChild(back);
+        card.appendChild(inner);
+        grid.appendChild(card);
+
+        card.onclick = function(){
+
+            if(card.classList.contains("flip")) return;
+
+            card.classList.add("flip");
+
+            if(i === correctIndex){
+
+                setTimeout(()=>{
+                    showPopup();
+                },500);
+
+            }else{
+
+                back.innerHTML = wrongMessages[3 - chances];
+
+                chances--;
+                chanceText.innerText = chances;
+
+                if(chances === 0){
+                    setTimeout(()=>{
+                        alert("Reshuffling 💚");
+                        chances = 3;
+                        chanceText.innerText = chances;
+                        createCards();
+                    },1200);
+                }
+            }
+        };
     }
 }
 
-function moveTile(index){
-    const validMoves = [
-        emptyIndex - 1,
-        emptyIndex + 1,
-        emptyIndex - 3,
-        emptyIndex + 3
-    ];
-
-    if(validMoves.includes(index)){
-        puzzle.insertBefore(tiles[index], tiles[emptyIndex]);
-        [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
-        emptyIndex = index;
-
-        checkWin();
-    }
+function showPopup(){
+    document.body.classList.add("blur-bg");
+    document.getElementById("popup").style.display="flex";
 }
 
-function shuffle(){
-    for(let i=0;i<100;i++){
-        let randomIndex = Math.floor(Math.random()*9);
-        moveTile(randomIndex);
-    }
+function goNext(){
+    window.location.href="page4.html";
 }
 
-function checkWin(){
-    for(let i=0;i<8;i++){
-        if(tiles[i].style.backgroundPosition !== 
-           `-${(i%3)*100}px -${Math.floor(i/3)*100}px`)
-           return;
-    }
-
-    setTimeout(()=>{
-        alert("You solved our memory 💙✨");
-        window.location.href = "page4.html";
-    },500);
-}
-
-createPuzzle();
-shuffle();
+createCards();
 
 </script>
 
-<style>
-    body {
-        background-image: url("gpt3.png");
-    }
-    </style>
 </body>
 </html>

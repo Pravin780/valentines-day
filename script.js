@@ -59,104 +59,123 @@ function openSurprise(){
 }
 
 /* =========================
-   PHOTO PUZZLE GAME (PAGE 3)
+   PROPER WORKING PUZZLE
 ========================= */
+document.addEventListener("DOMContentLoaded", function() {
 
-const puzzleContainer = document.getElementById("puzzle");
-
-if(puzzleContainer){
-
-    let tiles = [];
-    let emptyIndex = 8;
-
-    function createPuzzle(){
-        puzzleContainer.innerHTML = "";
-        tiles = [];
-
-        for(let i=0;i<9;i++){
-            let tile = document.createElement("div");
-            tile.classList.add("tile");
-
-            if(i === 8){
-                tile.classList.add("empty");
-            } else {
-                let row = Math.floor(i / 3);
-                let col = i % 3;
-                tile.style.backgroundPosition = `-${col*100}px -${row*100}px`;
-                tile.addEventListener("click", () => moveTile(i));
+    const puzzle = document.getElementById("puzzle");
+    
+    if (puzzle) {
+    
+        const image = "2016.jpeg";
+        const size = 3;
+        let tiles = [];
+        let firstTile = null;
+    
+        function createTiles() {
+            puzzle.innerHTML = "";
+            tiles = [];
+    
+            for (let i = 0; i < size * size; i++) {
+                let tile = document.createElement("div");
+                tile.className = "tile";
+                tile.dataset.index = i;
+    
+                let row = Math.floor(i / size);
+                let col = i % size;
+    
+                tile.style.backgroundImage = `url(${image})`;
+                tile.style.backgroundSize = "300px 300px";
+                tile.style.backgroundPosition = `-${col * 100}px -${row * 100}px`;
+    
+                tile.addEventListener("click", handleClick);
+    
+                tiles.push(tile);
             }
-
-            tiles.push(tile);
-            puzzleContainer.appendChild(tile);
+    
+            shuffleTiles();
+            tiles.forEach(tile => puzzle.appendChild(tile));
         }
-    }
-
-    function moveTile(index){
-        const validMoves = [
-            emptyIndex - 1,
-            emptyIndex + 1,
-            emptyIndex - 3,
-            emptyIndex + 3
-        ];
-
-        if(validMoves.includes(index)){
-            puzzleContainer.insertBefore(tiles[index], tiles[emptyIndex]);
-            [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
-            emptyIndex = index;
-
-            checkWin();
+    
+        function shuffleTiles() {
+            for (let i = tiles.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [tiles[i], tiles[j]] = [tiles[j], tiles[i]];
+            }
         }
-    }
-
-    function shuffle(){
-        for(let i=0;i<100;i++){
-            let randomIndex = Math.floor(Math.random()*9);
-            moveTile(randomIndex);
+    
+        function handleClick() {
+            if (!firstTile) {
+                firstTile = this;
+                this.style.outline = "3px solid #7ecbff";
+            } else {
+                swapTiles(firstTile, this);
+                firstTile.style.outline = "none";
+                firstTile = null;
+                checkWin();
+            }
         }
-    }
-
-    function checkWin(){
-        for(let i=0;i<8;i++){
-            if(tiles[i].style.backgroundPosition !== 
-               `-${(i%3)*100}px -${Math.floor(i/3)*100}px`)
-               return;
+    
+        function swapTiles(tile1, tile2) {
+            const parent = puzzle;
+            const tile1Index = Array.from(parent.children).indexOf(tile1);
+            const tile2Index = Array.from(parent.children).indexOf(tile2);
+    
+            if (tile1Index < tile2Index) {
+                parent.insertBefore(tile2, tile1);
+                parent.insertBefore(tile1, parent.children[tile2Index]);
+            } else {
+                parent.insertBefore(tile1, tile2);
+                parent.insertBefore(tile2, parent.children[tile1Index]);
+            }
         }
-
-        showMemoryMessage();
+    
+        function checkWin() {
+            const currentTiles = Array.from(puzzle.children);
+    
+            for (let i = 0; i < currentTiles.length; i++) {
+                if (currentTiles[i].dataset.index != i) {
+                    return;
+                }
+            }
+    
+            showMemoryMessage();
+        }
+    
+        function showMemoryMessage() {
+            const popup = document.createElement("div");
+    
+            popup.innerHTML = `
+                💙 You know this is our 1st year photo  
+                <br><br>
+                That we took in my class  
+                <br><br>
+                And my most lovely picture 💕
+            `;
+    
+            popup.style.position = "fixed";
+            popup.style.top = "50%";
+            popup.style.left = "50%";
+            popup.style.transform = "translate(-50%, -50%)";
+            popup.style.background = "rgba(0, 40, 80, 0.95)";
+            popup.style.color = "#7ecbff";
+            popup.style.padding = "50px";
+            popup.style.borderRadius = "25px";
+            popup.style.fontSize = "28px";
+            popup.style.textAlign = "center";
+            popup.style.boxShadow = "0 15px 40px rgba(0,0,0,0.8)";
+            popup.style.zIndex = "9999";
+    
+            document.body.appendChild(popup);
+    
+            setTimeout(() => {
+                window.location.href = "page4.html";
+            }, 5000);
+        }
+    
+        createTiles();
     }
-
-    function showMemoryMessage(){
-        const popup = document.createElement("div");
-
-        popup.innerHTML = `
-            💙 You know this is our 1st year photo  
-            <br><br>
-            That we took in my class  
-            <br><br>
-            And my most lovely picture 💕
-        `;
-
-        popup.style.position = "fixed";
-        popup.style.top = "50%";
-        popup.style.left = "50%";
-        popup.style.transform = "translate(-50%, -50%)";
-        popup.style.background = "rgba(0, 40, 80, 0.95)";
-        popup.style.color = "#7ecbff";
-        popup.style.padding = "50px";
-        popup.style.borderRadius = "25px";
-        popup.style.fontSize = "28px";
-        popup.style.textAlign = "center";
-        popup.style.boxShadow = "0 15px 40px rgba(0,0,0,0.8)";
-        popup.style.zIndex = "9999";
-
-        document.body.appendChild(popup);
-
-        setTimeout(()=>{
-            window.location.href = "page4.html";
-        },5000);
-    }
-
-    createPuzzle();
-    shuffle();
-}
+    
+    });
+    
 
