@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Praveen 💙 Priyadharshini</title>
+<title>Praveen & Priyadharshini</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,98 +18,76 @@ body{
     justify-content:center;
     align-items:center;
     text-align:center;
-    font-family:'Poppins',sans-serif;
+    font-family:'Playfair Display', serif;
     overflow:hidden;
+    position:relative;
 }
 
-/* Dark overlay */
+/* Vintage overlay */
 body::before{
     content:"";
     position:absolute;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.55);
+    background:rgba(240, 220, 200, 0.35);
+    mix-blend-mode:multiply;
     top:0;
     left:0;
 }
 
-/* Big faded background names */
-.background-names{
+/* Big Background Text (Retro Poster Style) */
+.background-title{
     position:absolute;
-    top:45%;
+    top:20%;
     left:50%;
-    transform:translate(-50%,-50%);
-    font-size:120px;
+    transform:translateX(-50%);
+    font-size:140px;
     font-weight:900;
-    color:rgba(255,255,255,0.06);
-    white-space:nowrap;
-    letter-spacing:5px;
+    color:rgba(120, 70, 50, 0.15);
+    letter-spacing:8px;
     z-index:1;
 }
 
-/* Container */
+/* Main Content */
 .container{
     position:relative;
     z-index:2;
-    animation:fadeIn 2s ease;
 }
 
-/* 3D Yellow Valentine Text */
-.valentine{
-    font-size:75px;
+/* Main Retro Heading */
+.main-title{
+    font-size:60px;
     font-weight:900;
-    color:#ffd700;
-    text-shadow:
-        0 3px 0 #b8860b,
-        0 6px 0 #996515,
-        0 10px 20px rgba(0,0,0,0.6),
-        0 0 25px rgba(255,215,0,0.7);
-    margin-bottom:25px;
     letter-spacing:3px;
+    color:#5a3e2b;
+    margin-bottom:10px;
 }
 
-/* Stylish Names */
+/* Sub romantic script */
 .names{
-    font-family: 'Allura', cursive;
-    font-size: 70px;
-    color:#00aaff;
-    text-shadow:
-        0 0 10px #00aaff,
-        0 0 25px #007bff,
-        0 0 40px #005eff;
+    font-family:'Great Vibes', cursive;
+    font-size:55px;
+    color:#7a4f3a;
     margin-bottom:40px;
 }
 
-/* Golden 3D Button */
+/* Soft Retro Button */
 button{
-    padding:15px 45px;
-    font-size:20px;
+    padding:14px 40px;
+    font-size:18px;
+    border-radius:40px;
     border:none;
-    border-radius:50px;
     cursor:pointer;
-    background:linear-gradient(145deg,#ffd700,#ffb300);
-    color:black;
-    font-weight:700;
-    box-shadow:
-        0 10px 20px rgba(0,0,0,0.5),
-        inset 0 -4px 8px rgba(0,0,0,0.3),
-        inset 0 4px 8px rgba(255,255,255,0.4);
+    background:#c9a27c;
+    color:#3b2a1f;
+    font-weight:600;
+    box-shadow:0 6px 15px rgba(0,0,0,0.3);
     transition:0.3s;
 }
 
 button:hover{
-    transform:translateY(-6px) scale(1.05);
-    box-shadow:
-        0 20px 35px rgba(255,215,0,0.8);
-}
-
-button:active{
-    transform:translateY(2px);
-}
-
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
+    background:#b58b66;
+    transform:translateY(-3px);
 }
 
 </style>
@@ -118,23 +95,22 @@ button:active{
 
 <body>
 
-<!-- Big faded background text -->
-<div class="background-names">
-    Praveen 💙 Priyadharshini
+<div class="background-title">
+    VALENTINE
 </div>
 
 <div class="container">
 
-    <div class="valentine">
-        10th year VALENTINE'S DAY
+    <div class="main-title">
+        VALENTINE'S DAY
     </div>
 
     <div class="names">
-        Praveen 💙 Priyadharshini
+        Praveen ♥ Priyadharshini
     </div>
 
     <button onclick="window.location.href='page2.html'">
-        Start Journey 💛
+        Begin The Journey
     </button>
 
 </div>
