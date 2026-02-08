@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Praveen ❤️ Priyadharshini</title>
+<title>Praveen 💙 Priyadharshini</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 
@@ -33,6 +33,20 @@ body::before{
     left:0;
 }
 
+/* Big faded background names */
+.background-names{
+    position:absolute;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    font-size:120px;
+    font-weight:900;
+    color:rgba(255,255,255,0.06);
+    white-space:nowrap;
+    letter-spacing:5px;
+    z-index:1;
+}
+
 /* Container */
 .container{
     position:relative;
@@ -40,62 +54,53 @@ body::before{
     animation:fadeIn 2s ease;
 }
 
-/* Big Background Word (Like ENJOY JOURNEY style) */
-.big-text{
-    font-size:110px;
-    font-weight:900;
-    letter-spacing:5px;
-    color:rgba(255,255,255,0.08);
-    position:absolute;
-    top:40%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    white-space:nowrap;
-}
-
-/* Valentines Day centered */
+/* 3D Yellow Valentine Text */
 .valentine{
-    font-size:70px;
+    font-size:75px;
     font-weight:900;
-    color:white;
+    color:#ffd700;
+    text-shadow:
+        0 3px 0 #b8860b,
+        0 6px 0 #996515,
+        0 10px 20px rgba(0,0,0,0.6),
+        0 0 25px rgba(255,215,0,0.7);
+    margin-bottom:25px;
     letter-spacing:3px;
-    margin-bottom:20px;
-    text-shadow:0 0 25px rgba(0,123,255,0.8);
 }
 
-/* Stylish Script Names */
+/* Stylish Names */
 .names{
     font-family:'Great Vibes',cursive;
-    font-size:65px;
+    font-size:60px;
     color:#00aaff;
     text-shadow:
         0 0 10px #00aaff,
-        0 0 20px #007bff,
+        0 0 25px #007bff,
         0 0 40px #005eff;
     margin-bottom:40px;
 }
 
-/* Blue 3D Button */
+/* Golden 3D Button */
 button{
     padding:15px 45px;
     font-size:20px;
     border:none;
     border-radius:50px;
     cursor:pointer;
-    background:linear-gradient(145deg,#1e90ff,#0066ff);
-    color:white;
-    font-weight:600;
+    background:linear-gradient(145deg,#ffd700,#ffb300);
+    color:black;
+    font-weight:700;
     box-shadow:
         0 10px 20px rgba(0,0,0,0.5),
         inset 0 -4px 8px rgba(0,0,0,0.3),
-        inset 0 4px 8px rgba(255,255,255,0.2);
+        inset 0 4px 8px rgba(255,255,255,0.4);
     transition:0.3s;
 }
 
 button:hover{
     transform:translateY(-6px) scale(1.05);
     box-shadow:
-        0 20px 30px rgba(0,123,255,0.8);
+        0 20px 35px rgba(255,215,0,0.8);
 }
 
 button:active{
@@ -112,21 +117,27 @@ button:active{
 
 <body>
 
-<div class="big-text">VALENTINE'S DAY</div>
+<!-- Big faded background text -->
+<div class="background-names">
+    Praveen 💙 Priyadharshini
+</div>
 
 <div class="container">
 
-    <div class="valentine">VALENTINE'S DAY</div>
+    <div class="valentine">
+        VALENTINE'S DAY
+    </div>
 
     <div class="names">
-        Praveen ❤️ Priyadharshini
+        Praveen 💙 Priyadharshini
     </div>
 
     <button onclick="window.location.href='page2.html'">
-        Start Journey 💙
+        Start Journey 💛
     </button>
 
 </div>
+
 
 <style>
     body {
