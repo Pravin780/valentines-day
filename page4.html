@@ -1,21 +1,202 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Memory</title>
-<link rel="stylesheet" href="style.css">
+<title>Our Memory ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    background:url("gpt4.png") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:'Cormorant Garamond', serif;
+    overflow:hidden;
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(120,0,0,0.35);
+    backdrop-filter:blur(2px);
+}
+
+.center{
+    position:relative;
+    text-align:center;
+    color:#ffd6d6;
+    z-index:2;
+}
+
+h2{
+    font-size:48px;
+    margin-bottom:25px;
+    text-shadow:2px 2px 15px rgba(255,0,0,0.6);
+}
+
+img{
+    width:320px;
+    border-radius:20px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.6);
+    margin-bottom:30px;
+}
+
+button{
+    padding:14px 35px;
+    margin:10px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-family:'Cormorant Garamond', serif;
+    transition:0.3s;
+}
+
+.yes-btn{
+    background:#ff4d6d;
+    color:white;
+}
+
+.yes-btn:hover{
+    background:#ff1e4d;
+    transform:scale(1.08);
+}
+
+.no-btn{
+    background:white;
+    color:#c4002f;
+}
+
+.no-btn:hover{
+    background:#ffe6e6;
+    transform:scale(1.08);
+}
+/* ===== Smooth Bottom Entry Animation ===== */
+
+.center > *{
+    opacity:0;
+    transform:translateY(60px);
+    animation: riseUp 1s ease forwards;
+}
+
+/* Stagger effect */
+.center h2{
+    animation-delay:0.2s;
+}
+.center img{
+    animation-delay:0.5s;
+}
+.center .yes-btn{
+    animation-delay:0.8s;
+}
+.center .no-btn{
+    animation-delay:1s;
+}
+
+@keyframes riseUp{
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* LEFT POPUP */
+.popup-left{
+    position:fixed;
+    top:50%;
+    left:-500px;
+    transform:translateY(-50%);
+    background:#7a0019;
+    color:white;
+    padding:30px 50px;
+    border-radius:20px;
+    font-size:24px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.7);
+    transition:0.8s ease;
+    z-index:9999;
+}
+
+.popup-left.show{
+    left:80px;
+}
+
+/* RIGHT POPUP */
+.popup-right{
+    position:fixed;
+    top:50%;
+    right:-600px;
+    transform:translateY(-50%);
+    background:#99002a;
+    color:white;
+    padding:30px 50px;
+    border-radius:20px;
+    font-size:24px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.7);
+    transition:0.8s ease;
+    z-index:9999;
+}
+
+.popup-right.show{
+    right:80px;
+}
+
+</style>
 </head>
+
 <body>
+
 <div class="center">
     <h2>Do you remember this day? 💖</h2>
-    <img src="ourpic2.jpeg" width="300">
-    <br><br>
-    <button onclick="nextPage('page5.html')">Yes I Do ❤️</button>
+    <img src="ourpic2.jpeg">
+
+    <br>
+
+    <button class="yes-btn" onclick="nextPage()">Yes I Do ❤️</button>
+    <button class="no-btn" onclick="showPopups()">No I'm Not Remembered 💔</button>
 </div>
-<script src="script.js"></script>
-<style>
-    body {
-        background-image: url("gpt4.png");
-    }
-    </style>
+
+<!-- POPUPS -->
+<div id="popup1" class="popup-left">
+    Think... Think about it 💭
+</div>
+
+<div id="popup2" class="popup-right">
+    Remember babie... you know that day ❤️
+</div>
+
+<script>
+
+function nextPage(){
+    window.location.href="page5.html";
+}
+
+function showPopups(){
+
+    let p1 = document.getElementById("popup1");
+    let p2 = document.getElementById("popup2");
+
+    p1.classList.add("show");
+
+    setTimeout(()=>{
+        p2.classList.add("show");
+    },600);
+
+    // Hide both after few seconds
+    setTimeout(()=>{
+        p1.classList.remove("show");
+        p2.classList.remove("show");
+    },4000);
+}
+
+
+</script>
+
 </body>
 </html>

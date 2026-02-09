@@ -1,22 +1,179 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Memory Question</title>
-<link rel="stylesheet" href="style.css">
+<title>Memory Question 💙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    background:url("gpt5.png") center/cover no-repeat;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-family:'Playfair Display', serif;
+    overflow:hidden;
+    position:relative;
+    color:white;
+}
+
+/* Blue cinematic overlay */
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        rgba(0,40,80,0.65),
+        rgba(0,20,50,0.75)
+    );
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index:0;
+}
+
+/* Floating sparkles */
+.sparkle{
+    position:absolute;
+    color:rgba(150,200,255,0.6);
+    animation: floatUp 8s linear infinite;
+    font-size:18px;
+}
+
+@keyframes floatUp{
+    0%{ transform:translateY(100vh); opacity:0; }
+    30%{ opacity:1; }
+    100%{ transform:translateY(-10vh); opacity:0; }
+}
+
+.container{
+    position:relative;
+    z-index:2;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+@keyframes fadeIn{
+    from{ opacity:0; transform:translateY(30px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+h2{
+    font-size:45px;
+    color:#9ed0ff;
+    text-shadow:
+        2px 2px 0 #002244,
+        4px 4px 15px rgba(0,0,0,0.6);
+    margin-bottom:30px;
+}
+
+/* Retro input */
+input{
+    padding:15px 30px;
+    border-radius:40px;
+    border:none;
+    outline:none;
+    font-size:18px;
+    width:250px;
+    text-align:center;
+    background:rgba(255,255,255,0.15);
+    color:white;
+    box-shadow:0 0 20px rgba(0,150,255,0.5);
+    transition:0.3s;
+}
+
+input:focus{
+    box-shadow:0 0 30px rgba(0,200,255,1);
+}
+
+/* Naughty glow button */
+button{
+    margin-top:25px;
+    padding:14px 45px;
+    font-size:18px;
+    border-radius:50px;
+    border:none;
+    cursor:pointer;
+    background:linear-gradient(45deg,#00aaff,#0066ff);
+    color:white;
+    font-weight:700;
+    box-shadow:0 0 20px rgba(0,150,255,0.6);
+    transition:0.4s;
+}
+
+button:hover{
+    transform:translateY(-5px) scale(1.05);
+    box-shadow:0 0 40px rgba(0,150,255,1);
+}
+
+/* Result message */
+#foodResult{
+    margin-top:20px;
+    font-size:20px;
+    color:#bfe6ff;
+    font-family:'Cormorant Garamond', serif;
+}
+
+/* Shake animation for wrong answer */
+@keyframes shake{
+    0%{ transform:translateX(0); }
+    25%{ transform:translateX(-8px); }
+    50%{ transform:translateX(8px); }
+    75%{ transform:translateX(-8px); }
+    100%{ transform:translateX(0); }
+}
+
+.shake{
+    animation: shake 0.4s;
+}
+
+</style>
 </head>
+
 <body>
-<div class="center">
+
+<div class="container">
     <h2>What did we eat that day? 😋</h2>
-    <input type="text" id="food">
-    <br><br>
-    <button onclick="checkFood()">Submit</button>
+    <input type="text" id="food" placeholder="Type your answer...">
+    <br>
+    <button onclick="checkFood()">Submit 💙</button>
     <p id="foodResult"></p>
 </div>
-<script src="script.js"></script>
-<style>
-    body {
-        background-image: url("gpt5.png");
+
+<script>
+
+/* Floating sparkles */
+for(let i=0;i<15;i++){
+    let s=document.createElement("div");
+    s.innerHTML="✨";
+    s.className="sparkle";
+    s.style.left=Math.random()*100+"vw";
+    s.style.animationDuration=(6+Math.random()*4)+"s";
+    document.body.appendChild(s);
+}
+
+/* Naughty playful answer logic */
+function checkFood(){
+    let food=document.getElementById("food").value.toLowerCase().trim();
+    let result=document.getElementById("foodResult");
+    let input=document.getElementById("food");
+
+    if(food==="pizza"){   // change if needed
+        result.innerHTML="Heheee correct Babie 😘💙";
+        setTimeout(()=>{
+            window.location.href="page6.html";
+        },1500);
+    }else{
+        result.innerHTML="Nooo naughty 😜 Think properlyyy 💙";
+        input.classList.add("shake");
+        setTimeout(()=>input.classList.remove("shake"),400);
     }
-    </style>
+}
+
+</script>
+
 </body>
 </html>

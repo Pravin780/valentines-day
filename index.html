@@ -3,17 +3,14 @@
 <head>
 <title>Praveen & Priyadharshini</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Parisienne&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Parisienne&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 
 <style>
 
 body{
     margin:0;
     padding:0;
-    background-image:url("bg1.jpg");
-    background-size:cover;
-    background-position:center;
+    background:url("gpt1.png") center/cover no-repeat;
     height:100vh;
     display:flex;
     justify-content:center;
@@ -22,81 +19,113 @@ body{
     font-family:'Playfair Display', serif;
     overflow:hidden;
     position:relative;
+    color:white;
 }
 
-/* Vintage overlay */
+/* Romantic dark red overlay */
 body::before{
     content:"";
     position:absolute;
-    width:100%;
-    height:100%;
-    background:rgba(240, 220, 200, 0.35);
-    mix-blend-mode:multiply;
-    top:0;
-    left:0;
+    inset:0;
+    background:linear-gradient(
+        rgba(120,0,20,0.55),
+        rgba(60,0,10,0.75)
+    );
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    z-index:0;
 }
 
-/* Big Background Text (Retro Poster Style) */
+/* Floating hearts animation */
+.heart{
+    position:absolute;
+    color:rgba(255,150,180,0.4);
+    font-size:20px;
+    animation: floatUp 10s linear infinite;
+}
+
+@keyframes floatUp{
+    0%{ transform:translateY(100vh) scale(0.5); opacity:0; }
+    50%{ opacity:1; }
+    100%{ transform:translateY(-10vh) scale(1.2); opacity:0; }
+}
+
+/* Big background retro text */
 .background-title{
     position:absolute;
-    top:20%;
+    top:18%;
     left:50%;
     transform:translateX(-50%);
     font-size:140px;
-    font-weight:900;
-    color:rgba(120, 70, 50, 0.15);
-    letter-spacing:8px;
+    font: weight 1500px;;
+    color:rgba(255,120,150,0.08);
+    letter-spacing:10px;
     z-index:1;
 }
 
-/* Main Content */
+/* Main content */
 .container{
     position:relative;
     z-index:2;
+    animation: fadeIn 2s ease forwards;
 }
 
-/* Main Retro Heading */
+@keyframes fadeIn{
+    from{ opacity:0; transform:translateY(30px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+/* Main Title */
 .main-title{
-    font-size: 65px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    color: #f2f700;  /* rich vintage gold */
-
+    font-size:65px;
+    font-weight:900;
+    letter-spacing:4px;
+    color:#ffccdd;
     text-shadow:
-        2px 2px 0 #c98f38,      /* dark outline */
-        4px 4px 10px rgba(0,0,0,0.6);  /* depth */
+        2px 2px 0 #7a001f,
+        4px 4px 20px rgba(0,0,0,0.6);
+    margin-bottom:20px;
 }
 
-
-/* Sub romantic script */
+/* Names in romantic script */
 .names{
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 55px;
-    font-weight: 600;
-    color: #efab00;  /* lighter warm gold */
-
+    font-family:'Parisienne', cursive;
+    font-size:60px;
+    color:#ffd6e7;
     text-shadow:
-        1px 1px 0 #4a2d07,
-        3px 3px 8px rgba(0,0,0,0.5);
+        1px 1px 0 #66001a,
+        3px 3px 15px rgba(0,0,0,0.6);
+    margin-bottom:40px;
 }
 
-/* Soft Retro Button */
+/* Animated glowing button */
 button{
-    padding:14px 40px;
+    padding:16px 50px;
     font-size:18px;
-    border-radius:40px;
+    border-radius:50px;
     border:none;
     cursor:pointer;
-    background:#a47e43;
-    color:#000000;
-    font-weight:600;
-    box-shadow:0 6px 15px rgba(0,0,0,0.3);
-    transition:0.3s;
+    background:linear-gradient(45deg,#ff4b7d,#ff8fab);
+    color:white;
+    font-weight:700;
+    letter-spacing:1px;
+    box-shadow:0 0 20px rgba(255,100,150,0.6);
+    transition:0.4s ease;
 }
 
 button:hover{
-    background:#885312;
-    transform:translateY(-3px);
+    transform:translateY(-5px) scale(1.05);
+    box-shadow:0 0 35px rgba(255,100,150,1);
+}
+
+/* Soft button entry animation */
+button{
+    animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse{
+    from{ box-shadow:0 0 15px rgba(255,100,150,0.5); }
+    to{ box-shadow:0 0 40px rgba(255,100,150,1); }
 }
 
 </style>
@@ -104,8 +133,20 @@ button:hover{
 
 <body>
 
+<!-- Floating Hearts -->
+<script>
+for(let i=0;i<20;i++){
+    let heart=document.createElement("div");
+    heart.innerHTML="❤";
+    heart.className="heart";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(6+Math.random()*6)+"s";
+    document.body.appendChild(heart);
+}
+</script>
+
 <div class="background-title">
-    VALENTINE
+    LOVE
 </div>
 
 <div class="container">
@@ -115,30 +156,14 @@ button:hover{
     </div>
 
     <div class="names">
-                    Praveen 💙 Priyadharshini
+        Praveen 💙 Priyadharshini
     </div>
 
     <button onclick="window.location.href='page2.html'">
-        Begin The Journey
+        Begin The Journey 💖
     </button>
 
 </div>
 
-
-<style>
-    body {
-        background-image: url("gpt1.png");
-    }
-    button {
-    margin-top: 40px;   /* increase this value if needed */
-}
-    </style>
-
-    
-
 </body>
 </html>
-
-
-
-

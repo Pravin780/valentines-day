@@ -2,22 +2,201 @@
 <html>
 <head>
 <title>Forever?</title>
-<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
 <style>
-body {
-    background-image: url("gpt7.png");
+
+body{
+    margin:0;
+    height:100vh;
+    background:url("gpt7.png") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    font-family:'Cormorant Garamond', serif;
+    overflow:hidden;
+    position:relative;
 }
+
+/* Soft pastel green overlay */
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(190,255,220,0.35);
+    backdrop-filter:blur(3px);
+}
+
+/* Main center */
+.center{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    color:#134e3a;
+}
+
+h1{
+    font-size:58px;
+    margin-bottom:40px;
+    font-family:'Playfair Display', serif;
+}
+
+/* Buttons */
+button{
+    padding:14px 45px;
+    margin:15px;
+    font-size:20px;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    transition:0.3s ease;
+    font-family:'Cormorant Garamond', serif;
+}
+
+.yes-btn{
+    background:linear-gradient(45deg,#7fd9b6,#a8f0d0);
+    color:#064e3b;
+    box-shadow:0 8px 25px rgba(120,220,180,0.6);
+}
+
+.yes-btn:hover{
+    transform:scale(1.08);
+}
+
+.no-btn{
+    background:rgb(227, 129, 129);
+    color:#145c3a;
+}
+
+/* DARK OVERLAY */
+.dark-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:999;
+}
+
+/* POPUP BOX */
+.popup{
+    background:#e6fff5;
+    padding:40px 50px;
+    border-radius:25px;
+    text-align:center;
+    width:420px;
+    max-width:90%;
+    box-shadow:0 25px 60px rgba(0,0,0,0.4);
+    animation:popIn 0.4s ease;
+}
+
+/* YES MESSAGE */
+.popup h2{
+    font-size:26px;
+    color:#064e3b;
+    margin-bottom:20px;
+}
+
+.popup p{
+    font-size:20px;
+    color:#145c3a;
+    line-height:1.6;
+}
+
+/* Arrow Button */
+.next-arrow{
+    margin-top:25px;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#6ee7b7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    font-size:28px;
+    transition:0.3s;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.next-arrow:hover{
+    transform:scale(1.1);
+}
+
+/* Animation */
+@keyframes popIn{
+    from{transform:scale(0.7); opacity:0;}
+    to{transform:scale(1); opacity:1;}
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="center">
-    <h1>Will You Be Mine Forever? 💍❤️</h1>
-    <button onclick="goToSurprise()">YES 💖</button>
-    <button id="noBtn">NO 😜</button>
+    <h1>Will You Be Mine Forever? 💍💙</h1>
+    <button class="yes-btn" onclick="showYesPopup()">YES 💖</button>
+    <button class="no-btn" onclick="showNoPopup()">NO 😜</button>
 </div>
 
-<script src="script.js"></script>
+<!-- OVERLAY -->
+<div class="dark-overlay" id="overlay">
+
+    <div class="popup" id="popupContent">
+        <!-- Content changes dynamically -->
+    </div>
+
+</div>
+
+<script>
+
+function showNoPopup(){
+
+    const overlay = document.getElementById("overlay");
+    const popup = document.getElementById("popupContent");
+
+    popup.innerHTML = `
+        <h2>After 10 years… you’re still saying no? 🥺</h2>
+        <button onclick="showYesPopup()" style="background:#6ee7b7; padding:10px 25px; border:none; border-radius:20px;">Okay okay YES 💖</button>
+        <button onclick="closePopup()" style="background:white; padding:10px 25px; border:none; border-radius:20px;">Let me think 😌</button>
+    `;
+
+    overlay.style.display="flex";
+}
+
+function showYesPopup(){
+
+    const overlay = document.getElementById("overlay");
+    const popup = document.getElementById("popupContent");
+
+    popup.innerHTML = `
+        <h2>You said YES... 💖</h2>
+        <p>
+            From this moment…  
+            It’s you and me forever 💍  
+            Thank you for choosing me again ❤️  
+            I promise to love you endlessly.
+        </p>
+        <div class="next-arrow" onclick="goToSurprise()">➜</div>
+    `;
+
+    overlay.style.display="flex";
+}
+
+function closePopup(){
+    document.getElementById("overlay").style.display="none";
+}
+
+function goToSurprise(){
+    window.location.href="page8.html";
+}
+
+</script>
+
 </body>
 </html>
